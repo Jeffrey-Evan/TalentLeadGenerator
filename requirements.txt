@@ -1,4 +1,3 @@
-flask
 langgraph
 openai
 pdfplumber
@@ -11,3 +10,9 @@ playwright
 beautifulsoup4
 requests
 streamlit
+python-dotenv
+ratelimit
+google-generativeai
+nest_asyncio
+PyPDF2
+dotenv
