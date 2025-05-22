@@ -1,0 +1,13 @@
+flask
+langgraph
+openai
+pdfplumber
+pillow
+jinja2
+aiofiles
+werkzeug
+pypdf
+playwright
+beautifulsoup4
+requests
+streamlit

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Matching Results</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; background-color: #f9f9f9; }
+    h1, h2 { color: #333; }
+    .section { margin-bottom: 2rem; }
+    .candidate {
+      background: white;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    img {
+      max-width: 100%;
+      border-radius: 5px;
+      margin-top: 0.5rem;
+    }
+    pre {
+      background-color: #eee;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="section">
+    <h1>🧾 Job Description Summary</h1>
+    <pre>{{ job_description }}</pre>
+  </div>
+
+  <div class="section">
+    <h2>✅ Extracted Requirements</h2>
+    <ul>
+      {% for req in requirements %}
+        <li>{{ req }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🔍 Search Query</h2>
+    <pre>{{ search_query }}</pre>
+  </div>
+
+  <div class="section">
+    <h2>🌐 Raw LinkedIn Profiles</h2>
+    <ul>
+      {% for profile in raw_profiles %}
+        <li><a href="{{ profile.url }}" target="_blank">{{ profile.url }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🏆 Top Matched Candidates</h2>
+    {% for c in candidates %}
+      <div class="candidate">
+        <h3>{{ c.name }} — {{ c.match_score }} ⭐</h3>
+        <p><strong>Explanation:</strong></p>
+        <p>{{ c.explanation }}</p>
+        {% if c.screenshot_path %}
+          <img src="{{ url_for('screenshot', filename=c.screenshot_path.split('/')[-1]) }}" alt="Screenshot">
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
